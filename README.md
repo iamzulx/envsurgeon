@@ -17,6 +17,30 @@ a real API key hardcoded in a file that's about to be pushed.
 
 Zero dependencies. One command. Works in CI.
 
+## What it looks like
+
+```
+$ envsurgeon doctor .
+
+scanning /home/me/api · env file: .env.example
+
+✘ 2 variable(s) used but never declared
+    API_URL  used at src/server.js:2
+    STRIPE_SECRET  used at src/app.py:3
+  → add them to your env file, or new devs will hit a wall
+
+✘ 1 potential secret leak(s)
+    AWS Access Key  src/config.py:1  AKIA…MPLE
+
+! 1 variable(s) declared but never used
+    OLD_FEATURE_FLAG
+
+! .env is not covered by .gitignore
+  → add a `.env` line before you commit anything
+
+envsurgeon: ✘ 3 problem(s), 2 warning(s)
+```
+
 ## Install
 
 ```bash
